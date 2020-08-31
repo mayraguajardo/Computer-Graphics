@@ -29,55 +29,50 @@ class Diamond:
         pushMatrix()
         rotateY(self.y_angle)
         
-        
+        v = [(0,0,0), 
+             (self.base_length/2, 0, (sin(PI/3)*self.base_length)), 
+             (self.base_length/2, -self.half_height, (sin(PI/3)*self.base_length)/3), 
+             (self.base_length, 0, 0),
+             (self.base_length/2, self.half_height, (sin(PI/3)*self.base_length)/3), 
+            ]
         
         translate(-self.base_length/2,0, -(sin(PI/3)*self.base_length)/3)
-    
-        beginShape(TRIANGLES)
-        vertex(0,0,0)
-        vertex(self.base_length/2,0, sin(PI/3)*self.base_length)
-        vertex(self.base_length,0,0)
-        endShape()
-    
-        beginShape(TRIANGLES)
-        vertex(0,0,0)
-        vertex(self.base_length/2,0, (sin(PI/3)*self.base_length))
-        vertex(self.base_length/2,-self.half_height, (sin(PI/3)*self.base_length)/3)
-        endShape()
-    
-        beginShape(TRIANGLES)
-        vertex(0,0,0)
-        vertex(self.base_length,0,0)
-        vertex(self.base_length/2,-self.half_height, (sin(PI/3)*self.base_length)/3)
-        endShape()
-    
-        beginShape(TRIANGLES)
-        vertex(self.base_length/2,0, (sin(PI/3)*self.base_length))
-        vertex(self.base_length,0,0)
-        vertex(self.base_length/2,-self.half_height, (sin(PI/3)*self.base_length)/3)
-        endShape()
-        
-        
-    
-    
-        beginShape(TRIANGLES)
-        vertex(0,0,0)
-        vertex(self.base_length/2,0, (sin(PI/3)*self.base_length))
-        vertex(self.base_length/2,self.half_height, (sin(PI/3)*self.base_length)/3)
-        endShape()
-    
-        beginShape(TRIANGLES)
-        vertex(0,0,0)
-        vertex(self.base_length,0,0)
-        vertex(self.base_length/2,self.half_height, (sin(PI/3)*self.base_length)/3)
-        endShape()
-    
-        beginShape(TRIANGLES)
-        vertex(self.base_length/2,0, (sin(PI/3)*self.base_length))
-        vertex(self.base_length,0,0)
-        vertex(self.base_length/2,self.half_height, (sin(PI/3)*self.base_length)/3)
-        endShape()
 
+        diamond = createShape()
+        diamond.beginShape(TRIANGLE)
+        diamond.vertex(v[0][0],v[0][1],v[0][2])
+        diamond.vertex(v[1][0],v[1][1],v[1][2])
+        diamond.vertex(v[2][0],v[2][1],v[2][2])  
+        diamond.endShape()
+        diamond.beginShape(TRIANGLE)
+        diamond.vertex(v[3][0],v[3][1],v[3][2])
+        diamond.vertex(v[1][0],v[1][1],v[1][2])
+        diamond.vertex(v[2][0],v[2][1],v[2][2])  
+        diamond.endShape()
+        diamond.beginShape(TRIANGLE)
+        diamond.vertex(v[0][0],v[0][1],v[0][2])
+        diamond.vertex(v[2][0],v[2][1],v[2][2])  
+        diamond.vertex(v[3][0],v[3][1],v[3][2])
+        diamond.endShape()
+        
+        
+        diamond.beginShape(TRIANGLE)
+        diamond.vertex(v[0][0],v[0][1],v[0][2])
+        diamond.vertex(v[1][0],v[1][1],v[1][2])
+        diamond.vertex(v[4][0],v[4][1],v[4][2])  
+        diamond.endShape()
+        diamond.beginShape(TRIANGLE)
+        diamond.vertex(v[3][0],v[3][1],v[3][2])
+        diamond.vertex(v[1][0],v[1][1],v[1][2])
+        diamond.vertex(v[4][0],v[4][1],v[4][2])  
+        diamond.endShape()
+        diamond.beginShape(TRIANGLE)
+        diamond.vertex(v[0][0],v[0][1],v[0][2])
+        diamond.vertex(v[3][0],v[3][1],v[3][2])
+        diamond.vertex(v[4][0],v[4][1],v[4][2])  
+        diamond.endShape()
+        
+        shape(diamond)
         self.y_angle += 0.05 * self.y_speed * self.multiplier
         popMatrix()
         popMatrix()

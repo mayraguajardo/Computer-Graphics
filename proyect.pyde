@@ -1,6 +1,5 @@
 from diamond import Diamond
 
-speed = 0.05
 diamonds = [Diamond(100,100), Diamond(100,100,-1)]
 my_shader = None
 
@@ -11,25 +10,22 @@ def setup():
     my_shader = loadShader('frag.glsl','vert.glsl')
     
 def draw():
-    global diamonds_angle, speed, my_shader
     background(0)
-    shader(my_shader)
-    pointLight(255, 255, 255, width/2, height, 500);
+    shader(my_shader, TRIANGLES)
+    pointLight(255, 255, 255, width/2, height, 200);
     
     translate(width/2, height/2)
-    noStroke()
-    pushMatrix()
-    translate(mouseX-width/2, mouseY-height/2)
-    if mousePressed:
-        fill(255,0,0)
-    else:
-        fill(0,0,0,0)
-    sphere(50)
-    popMatrix()
     
-    fill(0,255,0)
+    
+    fill(0,255,0, 80)
+    stroke(255)
+    if mousePressed and mouseX < width/2: fill(255,255,255)
     diamonds[0].display(200,200)
+    diamonds[0].display(200,height-200)
+    fill(0,255,0, 80)
+    if mousePressed and mouseX > width/2: fill(255,255,255)
     diamonds[1].display(width-200,200)
+    diamonds[1].display(width-200,height-200)
     
     try:
         if keyPressed and key in 'wW':
@@ -42,20 +38,4 @@ def draw():
             diamonds[0].decrementYSpeed()
     except:
         print('Key not found')
-        
-    # if mouseX < 300 and mouseX > 140 and mouseY < 300 and mouseY > 115:
-    #     fill(10,255,10)
-    # else:
-    #     fill(0,255,0)
     
-    # if mouseX < 300 and mouseX > 140 and mouseY < 300 and mouseY > 115:
-    #     fill(10,255,10)
-    # else:
-    #     fill(0,255,0)
-
-    
-    
-    
-    
-def mousePressed():
-    print(mouseX, mouseY)
