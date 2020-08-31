@@ -1,7 +1,7 @@
 from diamond import Diamond
 
 speed = 0.05
-diamond = Diamond(100,100)
+diamond = Diamond(100,100, -1)
 my_shader = None
 
 def setup():
@@ -15,21 +15,21 @@ def draw():
     background(0)
     
     translate(width/2, height/2, -50)
+    pointLight(255,255,255 ,200, 200, 0)
     
-    directionalLight(255,255,255,0,1,0)
+    fill(0,255,0,80)
     diamond.display(200,200)
     
     
-    # if keyPressed and key in 'wW':
-    #     diamonds_angle['1.2'] += speed
-    #     diamonds_angle['2.2'] += speed
-    # elif keyPressed and key in 'sS':
-    #     diamonds_angle['1.2'] -= speed
-    #     diamonds_angle['2.2'] -= speed
-    # elif keyPressed and key in 'aA':
-    #     speed += 0.001
-    # elif keyPressed and key in 'dD':
-    #     speed -= 0.001
+    
+    if keyPressed and key in 'wW':
+        diamond.incrementXAngle()
+    elif keyPressed and key in 'sS':
+        diamond.decrementXAngle()
+    elif keyPressed and key in 'aA':
+        diamond.incrementYSpeed()
+    elif keyPressed and key in 'dD':
+        diamond.decrementYSpeed()
         
     # if mouseX < 300 and mouseX > 140 and mouseY < 300 and mouseY > 115:
     #     fill(10,255,10)
