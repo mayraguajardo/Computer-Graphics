@@ -11,16 +11,16 @@ class Diamond:
             self.multiplier = 1
     
     def incrementYSpeed(self):
-        self.y_speed += 0.1
+        self.y_speed += 0.1 * self.multiplier
         
     def decrementYSpeed(self):
-        self.y_speed -= 0.1
+        self.y_speed -= 0.1 * self.multiplier
         
     def incrementXAngle(self):
-        self.x_angle += 0.1
+        self.x_angle += 0.1 * self.multiplier
     
     def decrementXAngle(self):
-        self.x_angle -= 0.1
+        self.x_angle -= 0.1 * self.multiplier
     
     def display(self, x, y):
         pushMatrix()
